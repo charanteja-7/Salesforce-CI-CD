@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Work log time entries for Tickets</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <label>Work Log</label>
+    <pluralLabel>Work Logs</pluralLabel>
+    <nameField>
+        <label>Work Log Name</label>
+        <type>Text</type>
+    </nameField>
+    <sharingModel>ControlledByParent</sharingModel>
+
+    <!-- Master-Detail to Ticket -->
+    <fields>
+        <fullName>Ticket__c</fullName>
+        <externalId>false</externalId>
+        <label>Ticket</label>
+        <referenceTo>Ticket__c</referenceTo>
+        <relationshipLabel>Work Logs</relationshipLabel>
+        <relationshipName>Work_Logs</relationshipName>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+
+    <!-- Started At -->
+    <fields>
+        <fullName>StartedAt__c</fullName>
+        <externalId>false</externalId>
+        <label>Started At</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+
+    <!-- Time Spent (mins) -->
+    <fields>
+        <fullName>TimeSpentMinutes__c</fullName>
+        <externalId>false</externalId>
+        <label>Time Spent (Minutes)</label>
+        <precision>9</precision>
+        <scale>0</scale>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+    </fields>
+
+    <!-- Comment -->
+    <fields>
+        <fullName>Comment__c</fullName>
+        <externalId>false</externalId>
+        <label>Comment</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+</CustomObject>
