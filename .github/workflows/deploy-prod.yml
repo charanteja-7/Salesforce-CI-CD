@@ -1,0 +1,28 @@
+name: Deploy to Production Org
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Salesforce CLI
+        run: npm install -g @salesforce/cli
+
+      - name: Authenticate Prod Org
+        run: |
+          echo "${{ secrets.SF_PROD_AUTH_URL }}" > auth.txt
+          sf org login sfdx-url --sfdx-url-file auth.txt --alias prodOrg
+
+      - name: Validate Deployment
+        run: |
+          sf project deploy validate \
+            --source-dir force-app \
+            --target-org prodOrg \
+            --test-level RunLocalTests
